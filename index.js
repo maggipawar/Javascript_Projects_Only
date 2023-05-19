@@ -1,30 +1,22 @@
 const btnEl = document.getElementById("btn");
-const animeContainer = document.querySelector(".anime_container");
-const animeImgEl = document.querySelector(".anime_img");
-const animeNameEl = document.querySelector(".anime_name");
+const weightConditionEl = document.getElementById("weight_condition");
 
-// Site for API:cat boys api
-const apiURl = "https://api.catboys.com/img";
+function calculateBMI() {
+  const heightValue = document.getElementById("height").value / 100;
+  const weightValue = document.getElementById("weight").value;
+  const bmiValue = weightValue / (heightValue * heightValue);
+  const bmiResult = document.getElementById("bmi_result");
+  bmiResult.value = bmiValue.toFixed(2);
 
-btnEl.addEventListener("click", async function () {
-  // for Loading effects site: loading io
-  try {
-    btnEl.disabled = true;
-    btnEl.innerText = "Loading...";
-    animeNameEl.innerText = "Updating...";
-    animeImgEl.src = "spinner.svg";
-    const response = await fetch(apiURl);
-    const data = await response.json();
-    console.log(data);
-    btnEl.disabled = false;
-    btnEl.innerText = "Get Anime";
-    animeContainer.style.display = "block";
-    animeImgEl.src = data.url;
-    animeNameEl.innerText = data.artist;
-  } catch (error) {
-    console.log(error);
-    btnEl.disabled = false;
-    btnEl.innerText = "Get Anime";
-    animeNameEl.innerText = "An error happened please try again";
+  if (bmiValue < 18.5) {
+    weightConditionEl.innerText = "Under Weight";
+  } else if (bmiValue >= 18.5 && bmiValue <= 24.9) {
+    weightConditionEl.innerText = "Normal Weight";
+  } else if (bmiValue >= 25 && bmiValue <= 29.9) {
+    weightConditionEl.innerText = "OverWeight";
+  } else if (bmiValue >= 30) {
+    weightConditionEl.innerText = "Obesity";
   }
-});
+}
+
+btnEl.addEventListener("click", calculateBMI);
