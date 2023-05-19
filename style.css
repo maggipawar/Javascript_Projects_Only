@@ -1,46 +1,39 @@
 body {
   margin: 0;
   padding: 0;
-  background: linear-gradient(to left bottom, lightgreen, lightblue);
-  min-height: 100vh;
+  background: linear-gradient(to left top, yellow, lightblue, yellow);
+  font-family: "Courier New", Courier, monospace;
   display: flex;
   justify-content: center;
+  min-height: 100vh;
   align-items: center;
-  font-family: "Courier New", Courier, monospace;
   color: darkcyan;
 }
 .container {
   background: rgba(255, 255, 255, 0.3);
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   width: 85%;
   max-width: 450px;
-  min-width: 350x;
+}
+.input-container {
+  font-size: 18px;
+  font-weight: 700;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
 }
-.heading {
-  font-size: 32px;
-}
-.temp-container {
-  width: 100%;
-  padding: 15px;
-  font-weight: bold;
-  font-size: 18px;
-}
 .input {
-  width: 220px;
-  font-family: "Courier New", Courier, monospace;
-  padding: 5px;
-  float: right;
-  outline: none;
+  padding: 10px;
+  width: 70%;
   background: rgba(255, 255, 255, 0.3);
   border-color: rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
   font-size: 18px;
   color: darkgreen;
+  outline: none;
 }
-.input::placeholder {
-  color: darkgrey;
+.error {
+  color: darkred;
 }
