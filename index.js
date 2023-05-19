@@ -1,31 +1,30 @@
-const ratingEls = document.querySelectorAll(".rating");
-const btnElm = document.getElementById("btn");
-const containerElm = document.getElementById("container");
-let selectedRating = "";
+const btnEl = document.getElementById("btn");
+const animeContainer = document.querySelector(".anime_container");
+const animeImgEl = document.querySelector(".anime_img");
+const animeNameEl = document.querySelector(".anime_name");
 
-ratingEls.forEach((ratingEl) => {
-  ratingEl.addEventListener("click", (event) => {
-    // console.log(event.target.innerText || event.target.parentNode.innerText);
-    removeActive();
-    selectedRating =
-      event.target.innerText || event.target.parentNode.innerText;
-    event.target.classList.add("active");
-    event.target.parentNode.classList.add("active");
-  });
-});
+// Site for API:cat boys api
+const apiURl = "https://api.catboys.com/img";
 
-btnElm.addEventListener("click", () => {
-  if (selectedRating !== "") {
-    containerElm.innerHTML = ` 
-        <strong>Thank you!</strong>
-        <br>
-        <br>
-        <strong>Feedback: ${selectedRating}</strong>
-        <p>We'll use your feedback to improve our customer support.</p> `;
+btnEl.addEventListener("click", async function () {
+  // for Loading effects site: loading io
+  try {
+    btnEl.disabled = true;
+    btnEl.innerText = "Loading...";
+    animeNameEl.innerText = "Updating...";
+    animeImgEl.src = "spinner.svg";
+    const response = await fetch(apiURl);
+    const data = await response.json();
+    console.log(data);
+    btnEl.disabled = false;
+    btnEl.innerText = "Get Anime";
+    animeContainer.style.display = "block";
+    animeImgEl.src = data.url;
+    animeNameEl.innerText = data.artist;
+  } catch (error) {
+    console.log(error);
+    btnEl.disabled = false;
+    btnEl.innerText = "Get Anime";
+    animeNameEl.innerText = "An error happened please try again";
   }
 });
-function removeActive() {
-  ratingEls.forEach((ratingEl) => {
-    ratingEl.classList.remove("active");
-  });
-}
