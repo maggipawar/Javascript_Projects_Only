@@ -1,30 +1,25 @@
-const quoteEl = document.getElementById("quote");
-const authorEl = document.getElementById("author");
-const btnEl = document.getElementById("btn");
+const celsiusEl = document.getElementById("celsius");
+const fahrenheitEl = document.getElementById("fahrenheit");
+const kelvinEl = document.getElementById("kelvin");
 
-const apiURl = "https://api.quotable.io/random";
+function computeTemp(event) {
+  const currentVal = +event.target.value;
 
-async function getQuote() {
-  try {
-    quoteEl.innerText = "Updating...";
-    authorEl.innerText = "Updating...";
-    btnEl.disabled = true;
-    btnEl.innerText = "Loading";
-    const result = await fetch(apiURl);
-    const data = await result.json();
-    const quoteContent = data.content;
-    const quoteAuthor = data.author;
-    quoteEl.innerText = quoteContent;
-    authorEl.innerText = "~" + quoteAuthor;
-    btnEl.disabled = false;
-    btnEl.innerText = "Get a Quote";
-    //   console.log(data);
-  } catch (error) {
-    console.log(error);
-    quoteEl.innerText = "An error happened,try again later ";
-    authorEl.innerText = "An error happened ";
+  switch (event.target.name) {
+    case "celsius":
+      fahrenheitEl.value = (currentVal * 1.8 + 32).toFixed(2);
+      kelvinEl.value = (currentVal + 273.32).toFixed(2);
+      break;
+    case "fahrenheit":
+      celsiusEl.value = ((currentVal - 32) / 1.8).toFixed(2);
+      kelvinEl.value = ((currentVal - 32) / 1.8 + 273.32).toFixed(2);
+      break;
+    case "kelvin":
+      celsiusEl.value = (currentVal - 273.32).toFixed(2);
+      fahrenheitEl.value = ((currentVal - 273.32) * 1.8 + 32).toFixed(2);
+      break;
+
+    default:
+      break;
   }
 }
-
-getQuote();
-btnEl.addEventListener("click", getQuote);
