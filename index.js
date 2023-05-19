@@ -1,27 +1,32 @@
-const currencyFirstEl = document.getElementById("currency-first");
-const input1El = document.getElementById("input1");
-const currencySecondEl = document.getElementById("currency-second");
-const input2El = document.getElementById("input2");
-const exchangeRateEl = document.getElementById("exchange-rate");
+const btnEl = document.getElementById("btn");
+const jokeEl = document.getElementById("joke");
+const apiKey = "/EW3RRLvJKDFPyXvKeWuXQ==j6ZxcAdWBHHdHDN5";
+const apiURl = "https://api.api-ninjas.com/v1/dadjokes?limit=1";
 
-updateRate();
+const options = {
+  method: "GET",
+  headers: {
+    "X-API-KEY": apiKey,
+  },
+};
 
-// API LINK:"exchangerate-api.com,https://www.exchangerate-api.com"
-
-function updateRate() {
-  fetch(
-    `https://v6.exchangerate-api.com/v6/042c12b1a5f43be67d3e387c/latest/${currencyFirstEl.value}`
-  )
-    .then((res) => res.json())
-    .then((data) => {
-      const rate = data.conversion_rates[currencySecondEl.value];
-      exchangeRateEl.innerText = `1 ${currencyFirstEl.value} = ${
-        rate + " " + currencySecondEl.value
-      }`;
-      input2El.value = (input1El.value * rate).toFixed(2);
-    });
+async function getJoke() {
+  try {
+    jokeEl.innerHTML = "Updating...";
+    btnEl.disabled = true;
+    btnEl.innerHTML = "Loading...";
+    const response = await fetch(apiURl, options);
+    const data = await response.json();
+    btnEl.disabled = false;
+    btnEl.innerHTML = "Tell Me a Joke";
+    // console.log(data[0].joke);
+    jokeEl.innerHTML = data[0].joke;
+  } catch (error) {
+    jokeEl.innerHTML = "An error happened,try again later";
+    btnEl.disabled = false;
+    btnEl.innerHTML = "Tell Me a Joke";
+    console.log(error);
+  }
 }
 
-currencyFirstEl.addEventListener("change", updateRate);
-input1El.addEventListener("input", updateRate);
-currencySecondEl.addEventListener("change", updateRate);
+btnEl.addEventListener("click", getJoke);
