@@ -1,63 +1,35 @@
 body {
   margin: 0;
-  background: linear-gradient(to left bottom, lightblue, lightgreen);
-  min-height: 100vh;
-  font-family: "Courier New", Courier, monospace;
-}
-.heading {
-  color: darkblue;
-  text-align: center;
-  font-size: 35px;
-  padding-top: 10px;
-}
-.info-text {
-  color: darkblue;
-  font-size: 18px;
-  text-align: center;
-}
-.app {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 350px);
-  gap: 40px;
+  padding: 0;
+  background: salmon;
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
   justify-content: center;
-  padding: 50px;
-}
-.note {
-  border: none;
-  outline: none;
-  background: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
-  border-radius: 15px;
-  box-sizing: border-box;
-  height: 200px;
-  padding: 20px;
-  color: darkblue;
-  font-size: 18px;
-  resize: none;
+  align-items: center;
   font-family: "Courier New", Courier, monospace;
 }
-.note::placeholder {
-  color: gray;
-  opacity: 40%;
+h2 {
+  font-size: 2rem;
+  color: aliceblue;
 }
-
-.note:hover,
-.note:focus {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  transition: all 300ms ease-in-out;
+.section {
+  text-align: center;
 }
 .btn {
-  height: 200px;
-  border-color: rgba(255, 255, 255, 0.37);
-  background: rgba(255, 255, 255, 0.27);
+  padding: 1rem;
+  font-size: 5rem;
+  border: none;
   border-radius: 15px;
-  font-size: 70px;
-  font-weight: 700;
+  background: rgba(255, 255, 255, 0.3);
+  filter: grayscale();
+  transition: filter 0.2s ease-in-out;
   cursor: pointer;
-  color: rgba(0, 0, 0, 0.3);
 }
 .btn:hover {
-  background: rgba(255, 255, 255, 0.55);
-  color: rgba(0, 0, 0, 0.6);
-  transition: all 300ms ease-in-out;
+  filter: grayscale(0);
+}
+.emoji_name {
+  font-weight: 600;
+  color: darkblue;
 }
