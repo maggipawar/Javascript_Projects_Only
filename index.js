@@ -1,22 +1,27 @@
-const btnEl = document.getElementById("btn");
-const weightConditionEl = document.getElementById("weight_condition");
+const currencyFirstEl = document.getElementById("currency-first");
+const input1El = document.getElementById("input1");
+const currencySecondEl = document.getElementById("currency-second");
+const input2El = document.getElementById("input2");
+const exchangeRateEl = document.getElementById("exchange-rate");
 
-function calculateBMI() {
-  const heightValue = document.getElementById("height").value / 100;
-  const weightValue = document.getElementById("weight").value;
-  const bmiValue = weightValue / (heightValue * heightValue);
-  const bmiResult = document.getElementById("bmi_result");
-  bmiResult.value = bmiValue.toFixed(2);
+updateRate();
 
-  if (bmiValue < 18.5) {
-    weightConditionEl.innerText = "Under Weight";
-  } else if (bmiValue >= 18.5 && bmiValue <= 24.9) {
-    weightConditionEl.innerText = "Normal Weight";
-  } else if (bmiValue >= 25 && bmiValue <= 29.9) {
-    weightConditionEl.innerText = "OverWeight";
-  } else if (bmiValue >= 30) {
-    weightConditionEl.innerText = "Obesity";
-  }
+// API LINK:"exchangerate-api.com,https://www.exchangerate-api.com"
+
+function updateRate() {
+  fetch(
+    `https://v6.exchangerate-api.com/v6/042c12b1a5f43be67d3e387c/latest/${currencyFirstEl.value}`
+  )
+    .then((res) => res.json())
+    .then((data) => {
+      const rate = data.conversion_rates[currencySecondEl.value];
+      exchangeRateEl.innerText = `1 ${currencyFirstEl.value} = ${
+        rate + " " + currencySecondEl.value
+      }`;
+      input2El.value = (input1El.value * rate).toFixed(2);
+    });
 }
 
-btnEl.addEventListener("click", calculateBMI);
+currencyFirstEl.addEventListener("change", updateRate);
+input1El.addEventListener("input", updateRate);
+currencySecondEl.addEventListener("change", updateRate);

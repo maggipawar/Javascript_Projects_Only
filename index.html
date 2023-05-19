@@ -4,35 +4,37 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BMI Calculator</title>
+    <title>Currency Converter</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="container">
-      <h1 class="heading">Body Mass Index (BMI) Calculator</h1>
-      Your Height (cm):
-      <input
-        type="number"
-        class="input"
-        id="height"
-        value="180"
-        placeholder="Enter your height in cm"
-      />
-      Your Weight (cm):
-      <input
-        type="number"
-        class="input"
-        id="weight"
-        value="80"
-        placeholder="Enter your wight in kg"
-      />
-      <button class="btn" id="btn">Compute BMI</button>
-      Your BMI:
-      <input disabled type="number" class="input" id="bmi_result" />
-      <h4 class="info_text">
-        Weight Condition:
-        <span id="weight_condition"></span>
-      </h4>
+      <h1 class="heading">Currency Converter</h1>
+      <div class="currency-container">
+        <select id="currency-first">
+          <option value="AUD">AUD</option>
+          <option value="CAD">CAD</option>
+          <option value="EUR">EUR</option>
+          <option value="GBP">GBP</option>
+          <option value="INR">INR</option>
+          <option value="USD" selected>USD</option>
+          <option value="JPY">JPY</option>
+        </select>
+        <input type="number" id="input1" value="1" min="0" />
+      </div>
+      <div class="currency-container">
+        <select id="currency-second">
+          <option value="AUD">AUD</option>
+          <option value="CAD">CAD</option>
+          <option value="EUR">EUR</option>
+          <option value="GBP">GBP</option>
+          <option value="INR" selected>INR</option>
+          <option value="USD">USD</option>
+          <option value="JPY">JPY</option>
+        </select>
+        <input type="number" id="input2" disabled />
+      </div>
+      <p class="exchange-rate" id="exchange-rate"></p>
     </div>
     <script src="index.js"></script>
   </body>
