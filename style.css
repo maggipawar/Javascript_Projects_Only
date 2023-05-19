@@ -1,35 +1,50 @@
 body {
   margin: 0;
-  padding: 0;
-  background: salmon;
   display: flex;
-  height: 100vh;
-  flex-direction: column;
+  min-height: 100vh;
   justify-content: center;
   align-items: center;
   font-family: "Courier New", Courier, monospace;
+  background: linear-gradient(to left bottom, lightgreen, lightblue);
 }
-h2 {
-  font-size: 2rem;
-  color: aliceblue;
-}
-.section {
+.container {
+  background: rgba(255, 255, 255, 0.3);
+  padding: 20px;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
   text-align: center;
+  width: 90%;
+  margin: 10px;
+  min-width: 450px;
+}
+.heading {
+  font-size: 30px;
+  font-weight: 700;
+}
+.quote {
+  font-size: 30px;
+  font-weight: 600;
+}
+.author {
+  font-size: 25px;
+  margin: 10px;
+  font-style: italic;
 }
 .btn {
-  padding: 1rem;
-  font-size: 5rem;
-  border: none;
-  border-radius: 15px;
-  background: rgba(255, 255, 255, 0.3);
-  filter: grayscale();
-  transition: filter 0.2s ease-in-out;
+  font-size: 18px;
+  border-radius: 5px;
   cursor: pointer;
+  padding: 10px;
+  margin-top: 15px;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+  text-transform: uppercase;
+  width: 300px;
 }
 .btn:hover {
-  filter: grayscale(0);
-}
-.emoji_name {
-  font-weight: 600;
-  color: darkblue;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
+  transition: all 300ms ease-in-out;
+  color: green;
 }

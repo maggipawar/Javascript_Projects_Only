@@ -1,26 +1,30 @@
-const btnEl = document.querySelector(".btn");
-const emojiNamEl = document.querySelector(".emoji_name");
+const quoteEl = document.getElementById("quote");
+const authorEl = document.getElementById("author");
+const btnEl = document.getElementById("btn");
 
-const emoji = [];
-// API Site: emoji-api.com
+const apiURl = "https://api.quotable.io/random";
 
-async function getEmoji() {
-  let response = await fetch(
-    "https://emoji-api.com/emojis?access_key=9baff3c490bf5dde58b7019300d29608de3b5cdf"
-  );
-  let data = await response.json();
-
-  for (let i = 0; i < 1500; i++) {
-    emoji.push({
-      emojiName: data[i].character,
-      emojiCode: data[i].unicodeName,
-    });
+async function getQuote() {
+  try {
+    quoteEl.innerText = "Updating...";
+    authorEl.innerText = "Updating...";
+    btnEl.disabled = true;
+    btnEl.innerText = "Loading";
+    const result = await fetch(apiURl);
+    const data = await result.json();
+    const quoteContent = data.content;
+    const quoteAuthor = data.author;
+    quoteEl.innerText = quoteContent;
+    authorEl.innerText = "~" + quoteAuthor;
+    btnEl.disabled = false;
+    btnEl.innerText = "Get a Quote";
+    //   console.log(data);
+  } catch (error) {
+    console.log(error);
+    quoteEl.innerText = "An error happened,try again later ";
+    authorEl.innerText = "An error happened ";
   }
 }
-getEmoji();
 
-btnEl.addEventListener("click", () => {
-  let randomNum = Math.floor(Math.random() * emoji.length);
-  btnEl.innerText = emoji[randomNum].emojiName;
-  emojiNamEl.innerText = emoji[randomNum].emojiCode;
-});
+getQuote();
+btnEl.addEventListener("click", getQuote);
