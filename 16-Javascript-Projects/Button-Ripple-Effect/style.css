@@ -29,11 +29,11 @@ body {
   content: "";
   position: absolute;
   width: 0;
-  height: 0;    
+  height: 0;
   background: orangered;
   border-radius: 50%;
   left: var(--xPos);
-  top:  var(--yPos);
+  top: var(--yPos);
   transform: translate(-50%, -50%);
   transition: width 0.5s, height 0.5s;
 }
