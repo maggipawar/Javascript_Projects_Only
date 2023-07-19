@@ -55,6 +55,8 @@ h1 {
   background-size: cover;
   display: flex;
   flex-direction: column;
+  opacity: 1;
+  transition: all 0.7s;
 }
 
 h4 {
@@ -101,4 +103,6 @@ label {
 
 .active.popup-container {
   visibility: hidden;
+  opacity: 0;
+  top: 10%;
 }
